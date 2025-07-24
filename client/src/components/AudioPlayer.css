@@ -1,0 +1,45 @@
+.audio-controls {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  background: rgba(100, 100, 100, 0.3);
+  border-radius: 0.25em;
+  padding: 8px 14px;
+}
+
+.audio-controls > audio {
+  display: none;
+}
+
+.audio-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #fff;
+  margin-right: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.audio-btn > img {
+  width: 1.25rem;
+}
+
+.audio-slider {
+  width: 80px;
+  background: var(--primary-color);
+  color: red;
+  border-radius: 0.25rem;
+  padding: 0.1em 0.25em;
+  border: 3px solid color-mix(in srgb, var(--primary-color), #555);
+}
+
+input[type="range"]::-moz-range-thumb {
+  border-radius: 3px;
+  background: white;
+  cursor: pointer;
+}

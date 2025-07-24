@@ -1,56 +1,8 @@
-@keyframes undulate {
-  0% {
-    transform: translate(-50%, calc(-50% - var(--border-width) / 2)) scale(1);
-  }
-  50% {
-    transform: translate(-50%, calc(-50% - var(--border-width) / 2)) scale(1.15);
-  }
-  100% {
-    transform: translate(-50%, calc(-50% - var(--border-width) / 2)) scale(1);
-  }
-}
-
-.heading {
-  color: var(--primary-color);
-  text-shadow: 0 0 5px var(--primary-color);
-  font-size: 3rem;
-}
-
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-evenly;
   height: 100%;
   padding: 2rem;
 }
-
-.btns-container {
-  display: flex;
-  gap: 2rem;
-}
-
-.submit-btn {
-  --btn-color: var(--secondary-color);
-}
-
-.clear-btn {
-  --btn-color: hsl(0, 0%, 50%);
-}
-
-.btn {
-  padding: 0.5em 1.5em;
-  background-color: var(--btn-color);
-  border: none;
-  color: white;
-  font-size: 1.6em;
-  cursor: pointer;
-  transition: transform 0.25s ease-out, box-shadow 0.25s ease-out;
-}
-
-.btn:hover {
-  transform: translateY(-0.4em) scale(1.05);
-  box-shadow: 0 0.3em 20px 10px
-    color-mix(in srgb, var(--btn-color) 50%, transparent);
-}
-

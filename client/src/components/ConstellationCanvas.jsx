@@ -6,9 +6,10 @@ function ConstellationCanvas({
   setPoints,
   connections,
   setConnections,
+  activeStar,
+  setActiveStar,
 }) {
   let canvasRef;
-  const [activeStar, setActiveStar] = createSignal(-1);
 
   function redrawCanvas() {
     const ctx = canvasRef.getContext("2d");

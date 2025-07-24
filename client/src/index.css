@@ -21,4 +21,19 @@ body,
   overflow: hidden;
 }
 
+.btn {
+  padding: 0.5em 1.5em;
+  background-color: var(--btn-color);
+  border: none;
+  border-radius: .1em;
+  color: white;
+  font-size: 1.6em;
+  cursor: pointer;
+  transition: transform 0.25s ease-out, box-shadow 0.25s ease-out;
+}
 
+.btn:hover {
+  transform: translateY(-0.4em) scale(1.05);
+  box-shadow: 0 0.3em 20px 10px
+    color-mix(in srgb, var(--btn-color) 50%, transparent);
+}

@@ -29,7 +29,16 @@
 }
 
 .background-image path {
+  transition: fill 1s ease-out;
   animation: twinkle 2s infinite;
+}
+
+.background-image.active path {
+  fill: default;
+}
+
+.background-image:not(.active) path {
+  fill: hsl(255 255 255 / 0.4);
 }
 
 .background-image path:nth-child(3n + 1) {

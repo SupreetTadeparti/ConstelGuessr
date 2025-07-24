@@ -1,6 +1,6 @@
 async function predictConstellation(points, connections) {
   /*
-    Expected JSON input format:
+    Expected format for API request:
     {
         "stars": [
             {"id": 0, "x": 0.1, "y": 0.8},
@@ -22,15 +22,6 @@ async function predictConstellation(points, connections) {
     (p[1] - minY) / (maxY - minY),
   ]);
 
-  console.log(
-    normalizedPoints.map((point, idx) => ({
-      id: idx,
-      x: point[1],
-      y: point[0],
-    })),
-    connections.map((conn) => [conn[0], conn[1]])
-  );
-
   try {
     const response = await fetch("http://127.0.0.1:5000/predict", {
       method: "POST",
@@ -45,7 +36,7 @@ async function predictConstellation(points, connections) {
       }),
     });
     const data = await response.json();
-    console.log(data)
+    console.log(data);
     return data.prediction || "Unknown";
   } catch (err) {
     console.log(err);

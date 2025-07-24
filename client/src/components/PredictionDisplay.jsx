@@ -39,7 +39,15 @@ function PredictionDisplay(props) {
     return greetings[Math.floor(Math.random() * greetings.length)];
   }
 
-  let speechBubbleContent = (
+  let titlePageContent = (
+    <>
+      Welcome to the Cosmic Constellation Predictor!
+      <br />
+      Click the button below to start your journey.
+    </>
+  );
+
+  let predictionContent = (
     <>
       {getRandomGreeting()}
       <br />
@@ -49,6 +57,12 @@ function PredictionDisplay(props) {
   );
 
   /* Displays random intermittent greetings while waiting for user submission */
+
+  let fallbackContent = (
+    <Show when={showFallback() && fallbackText().length > 0}>
+      <SpeechBubble children={fallbackText()} />
+    </Show>
+  );
 
   // Set an interval to show fallback greetings with a delay
   let intervalId = setInterval(() => {
@@ -61,20 +75,19 @@ function PredictionDisplay(props) {
     }, idleGreetingGapTime); // 1 second gap
   }, idleGreetingDisplayTime + idleGreetingGapTime); // 7s show + 1s gap
 
-  let fallbackContent = (
-    <Show when={showFallback() && fallbackText().length > 0}>
-      <SpeechBubble children={fallbackText()} />
-    </Show>
-  );
-
   onCleanup(() => clearInterval(intervalId));
 
   return (
     <div className="prediction-display">
       <img className="alien" src={alienImg} alt="alien" />
       <div className="speech-bubble-container">
-        <Show when={props.prediction.length > 0} fallback={fallbackContent}>
-          <SpeechBubble children={speechBubbleContent} />
+        <Show
+          when={props.page !== "title"}
+          fallback={<SpeechBubble children={titlePageContent} />}
+        >
+          <Show when={props.prediction.length > 0} fallback={fallbackContent}>
+            <SpeechBubble children={predictionContent} />
+          </Show>
         </Show>
       </div>
     </div>
