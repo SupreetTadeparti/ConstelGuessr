@@ -6,8 +6,6 @@
 
 ## Overview
 
----
-
 ConstelGeussr is a fun, interactive web app where you draw your own constellation by placing and connecting stars. The app uses AI to guess which real-world constellation your drawing most closely matches. With a clean, intuitive UI, it’s a playful way to explore the night sky and test your constellation knowledge!
 
 ## Features
