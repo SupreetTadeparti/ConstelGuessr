@@ -1,0 +1,16 @@
+.alien {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 20rem;
+}
+
+.speech-bubble-container {
+  position: absolute;
+  /* Verticall align the speech bubble with the alien */
+  bottom: calc(20rem + 3em);
+  right: 3em;
+  display: flex;
+  justify-content: flex-end;
+  z-index: 20;
+}

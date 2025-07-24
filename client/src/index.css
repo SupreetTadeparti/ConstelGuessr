@@ -1,0 +1,24 @@
+:root {
+  --primary-color: #8e38af;
+  --secondary-color: #59af38;
+  --space-grey: #3c3c3c;
+  --font-family: "Goldman", sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  font-family: var(--font-family);
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+
