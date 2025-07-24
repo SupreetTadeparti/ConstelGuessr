@@ -1,4 +1,4 @@
-import { createSignal, onCleanup } from "solid-js";
+import { createEffect, createSignal, onCleanup } from "solid-js";
 import { Show } from "solid-js";
 import SpeechBubble from "./SpeechBubble";
 import robotSmileImg from "../assets/robot_smile.png";
@@ -35,7 +35,7 @@ function PredictionDisplay(props) {
   const [showFallback, setShowFallback] = createSignal(false);
   const [fallbackText, setFallbackText] = createSignal("");
 
-  function getRandomGreeting() {
+  function getRandomGreeting(s) {
     // 1% chance for special angry greeting
     if (Math.random() < 0.01) {
       return "You dare show me this constellation? Prepare for cosmic destruction!";
@@ -57,14 +57,19 @@ function PredictionDisplay(props) {
     />
   );
 
-  let predictionContent = (
-    <>
-      Is that &nbsp;
-      <strong>{props.prediction}</strong>?
-      <br />
-      {getRandomGreeting()}
-    </>
-  );
+  let predictionContent;
+
+  createEffect(() => {
+    predictionContent = (
+      <>
+        Is that &nbsp;
+        <strong>{props.prediction}</strong>?
+        <br />
+        {/* Hack to update greeting */}
+        {getRandomGreeting(props.prediction)}
+      </>
+    );
+  });
 
   /* Displays random intermittent greetings while waiting for user submission */
 

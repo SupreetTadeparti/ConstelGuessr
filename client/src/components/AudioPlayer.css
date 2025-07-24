@@ -36,15 +36,40 @@
   border-radius: 0.25rem;
   padding: 0.1em 0.25em;
   border: 3px solid color-mix(in srgb, var(--primary-color), #555);
+  -webkit-appearance: none; /* Prevent default WebKit styles */
+  appearance: none;
 }
 
-input[type="range"]::-moz-range-thumb {
+/* Style the track (Chrome, Safari, Edge) */
+.audio-slider::-webkit-slider-runnable-track {
+  height: 4px;
+  background: var(--primary-color);
+  border-radius: 2px;
+}
+
+/* Style the thumb (Chrome, Safari, Edge) */
+.audio-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 16px;
+  width: 16px;
   border-radius: 3px;
   background: white;
   cursor: pointer;
+  margin-top: -6px; /* Aligns the thumb with the track */
 }
 
-::-webkit-slider-thumb {
+/* Style the track (Firefox) */
+.audio-slider::-moz-range-track {
+  height: 4px;
+  background: var(--primary-color);
+  border-radius: 2px;
+}
+
+/* Style the thumb (Firefox) */
+.audio-slider::-moz-range-thumb {
+  height: 16px;
+  width: 16px;
   border-radius: 3px;
   background: white;
   cursor: pointer;

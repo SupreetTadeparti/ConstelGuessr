@@ -39,7 +39,6 @@ async function predictConstellation(points, connections) {
       }),
     });
     const data = await response.json();
-    console.log(data);
     return data.prediction || "Unknown";
   } catch (err) {
     console.log(err);
