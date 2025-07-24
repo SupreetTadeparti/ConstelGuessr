@@ -1,6 +1,17 @@
-import { onMount, createSignal, createEffect } from "solid-js";
+import { onMount, createEffect } from "solid-js";
 import "./ConstellationCanvas.css";
 
+const starRadius = 6;
+const maxStars = 9; // Appropriate for ML model input size
+
+/*
+  Interface to draw constellations:
+  
+  
+  HOW TO USE:
+  - Click to add a star.
+  - Click on an existing star to make it active.
+*/
 function ConstellationCanvas({
   points,
   setPoints,
@@ -32,9 +43,11 @@ function ConstellationCanvas({
     // Draw stars
     points.forEach(([x, y], idx) => {
       ctx.beginPath();
-      ctx.arc(x, y, 6, 0, 2 * Math.PI);
-      ctx.fillStyle = idx === activeStar() ? "#FFD700" : "white";
-      ctx.shadowColor = idx === activeStar() ? "#FFD700" : "white";
+      ctx.arc(x, y, starRadius, 0, 2 * Math.PI);
+
+      // Set color based on whether the star is active. Active stars are set to secondary color
+      ctx.fillStyle = idx === activeStar() ? "#12f3fd" : "white";
+      ctx.shadowColor = idx === activeStar() ? "#12f3fd" : "white";
       ctx.shadowBlur = 8;
       ctx.fill();
       ctx.shadowBlur = 0;
@@ -49,30 +62,34 @@ function ConstellationCanvas({
     // Check if clicked on a star
     let found = false;
     points.forEach(([px, py], idx) => {
+      // Compute euclidean distance from click to star
+      // If distance is less than or equal to starRadius + 5 (for padding) pixels, consider it a click on the star
       const dist = Math.hypot(px - x, py - y);
-      if (dist <= 10) {
+      if (dist <= starRadius + 5) {
         setActiveStar(idx);
         found = true;
       }
     });
 
-    if (found) {
-      return; // Only set active, don't add a new star
-    }
+    // Exit if we found an existing star
+    if (found) return;
 
     // Add new star if not clicking on existing one
-    if (points.length >= 9) return;
+    if (points.length >= maxStars) return;
 
     const newPoints = [...points, [x, y]];
     setPoints(newPoints);
+
     // If there is an active star, add a connection from it to the new star
     if (activeStar() !== -1 && points.length > 0) {
       setConnections([...connections, [activeStar(), newPoints.length - 1]]);
     }
+
     setActiveStar(newPoints.length - 1); // new star is active
   }
 
   onMount(() => {
+    // Set canvas size to match size set in CSS, allowing for responsive design
     const canvas = canvasRef;
     const rect = canvas.getBoundingClientRect();
     canvas.width = rect.width;

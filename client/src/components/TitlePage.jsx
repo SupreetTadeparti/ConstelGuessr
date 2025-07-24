@@ -6,6 +6,7 @@ function TitlePage({ setPage }) {
   return (
     <>
       <img className="logo" src={logo} alt="Logo" width={600} />
+      {/* Go to main page on button click */}
       <div className="btn start-btn" onClick={() => setPage("main")}>
         Start!
       </div>

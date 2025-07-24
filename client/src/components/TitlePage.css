@@ -1,18 +1,7 @@
-@keyframes bobble {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
-  100% {
-    transform: translateY(0);
-  }
-}
-
 .start-btn.btn {
   font-size: 2em;
-  --btn-color: #4caf50;
+  color: #333;
+  --btn-color: var(--secondary-color);
 }
 
 .logo {

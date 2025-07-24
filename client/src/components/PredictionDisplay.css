@@ -1,13 +1,13 @@
-.alien {
+.robot {
   position: absolute;
   bottom: 0;
   right: 0;
   height: 20rem;
+  animation: bobble 5s linear infinite;
 }
 
 .speech-bubble-container {
   position: absolute;
-  /* Verticall align the speech bubble with the alien */
   bottom: calc(20rem + 3em);
   right: 3em;
   max-width: 25%;

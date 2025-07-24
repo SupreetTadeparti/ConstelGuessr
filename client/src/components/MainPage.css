@@ -1,20 +1,10 @@
-@keyframes undulate {
-  0% {
-    transform: translate(-50%, calc(-50% - var(--border-width) / 2)) scale(1);
-  }
-  50% {
-    transform: translate(-50%, calc(-50% - var(--border-width) / 2)) scale(1.15);
-  }
-  100% {
-    transform: translate(-50%, calc(-50% - var(--border-width) / 2)) scale(1);
-  }
-}
+
 
 .heading {
   /* Text outline added for clarity */
 
-  text-shadow: -1px -1px 0 #aaa, 1px -1px 0 #aaa, -1px 1px 0 #aaa,
-    1px 1px 0 #aaa, 0 0 10px var(--primary-color);
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000, 0 0 5px #555;
 
   color: var(--primary-color);
   font-family: Tektur;
@@ -27,9 +17,11 @@
 }
 
 .submit-btn {
-  --btn-color: var(--secondary-color);
+  --btn-color: var(--primary-color);
 }
 
 .clear-btn {
   --btn-color: hsl(0, 0%, 50%);
+  --btn-color: var(--secondary-color);
+  color: #001829;
 }

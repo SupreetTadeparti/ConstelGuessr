@@ -5,17 +5,27 @@ import ConstellationCanvas from "./ConstellationCanvas";
 import { predictConstellation } from "../utils/api";
 import "./MainPage.css";
 
+/*
+ ------------------------
+ MAIN PAGE
+ ------------------------
+
+ Page immitation for DRAWING CONSTELLATIONS and PREDICTING them
+ This is the main page of the application
+*/
 function MainPage() {
   const [points, setPoints] = createStore([]);
   const [connections, setConnections] = createStore([]);
   const [activeStar, setActiveStar] = createSignal(-1);
   const [prediction, setPrediction] = createSignal("");
 
+  // Sends API request to predict the constellation
   async function handlePredict() {
     const result = await predictConstellation(points, connections);
     setPrediction(result);
   }
 
+  // Resets state
   function handleClear() {
     setPoints([]);
     setConnections([]);

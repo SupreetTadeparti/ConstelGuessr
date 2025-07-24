@@ -5,13 +5,14 @@
 - [x] Active star + Connections (45 Mins)
 - [x] Background design
 - [x] Background music + Controls (30 Mins)
-- [ ] Logo + Landing page
-- [ ] Performance testing
-- [ ] Normalize canvas data to mimic training data ()
-- [ ] Alien image + Prediction animation
-- [ ] Cursor
+- [x] Multiple background music tracks (15 Mins)
+- [x] Logo + Landing page (1 hour)
+- [x] Cursor
+- [x] Normalize canvas data to mimic training data
+- [x] Predictor image + animation
+- [x] Small CSS tweaks ('Draw Constellation' Heading, Speech Bubble Details)
 - [ ] Responsiveness
-- [ ] Small CSS tweaks ('Draw Constellation' Heading, Speech Bubble Details, Alien Animation)
 - [ ] Code cleanup
+- [ ] Performance testing
 - [ ] Documentation
 - [ ] Deployment

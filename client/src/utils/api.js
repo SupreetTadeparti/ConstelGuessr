@@ -1,25 +1,26 @@
-async function predictConstellation(points, connections) {
-  /*
-    Expected format for API request:
-    {
-        "stars": [
-            {"id": 0, "x": 0.1, "y": 0.8},
-            {"id": 1, "x": 0.2, "y": 0.7}
-        ],
-        "connections": [
-            [0, 1]
-        ]
-    }  
+/*
+  Sends an API request to predict the constellation based on given points and connections.
+  Points should be in the format [[x1, y1], [x2, y2], ...]
+  Connections should be in the format [[index1, index2], ...]
 */
-
+async function predictConstellation(points, connections) {
   // Normalize points to a 0-1 range
   const minX = Math.min(...points.map((p) => p[0]));
   const minY = Math.min(...points.map((p) => p[1]));
   const maxX = Math.max(...points.map((p) => p[0]));
   const maxY = Math.max(...points.map((p) => p[1]));
+
+  const width = maxX - minX;
+  const height = maxY - minY;
+  const scale = Math.max(width, height);
+
+  // Centering offset to keep proportions and center in 0-1 box
+  const offsetX = (scale - width) / 2;
+  const offsetY = (scale - height) / 2;
+
   const normalizedPoints = points.map((p) => [
-    (p[0] - minX) / (maxX - minX),
-    (p[1] - minY) / (maxY - minY),
+    (p[0] - minX + offsetX) / scale,
+    (p[1] - minY + offsetY) / scale,
   ]);
 
   try {
