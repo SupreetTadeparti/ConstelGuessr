@@ -7,13 +7,15 @@ from flask_cors import CORS
 
 app = Flask(__name__)
 
+FRONTEND_ENDPOINT = "http://localhost:5173"
+
 # Enable CORS for all routes and allow requests from the frontend
 # Adjust the origin as needed for your frontend development server
-CORS(app, resources={r"/*": {"origins": "http://localhost:5173"}})
+CORS(app, resources={r"/*": {"origins": FRONTEND_ENDPOINT}})
 
 # Adjust based on your largest constellation.
-MAX_STARS_TRAINED = 9
-MAX_CONNECTIONS_TRAINED = 8
+MAX_STARS_TRAINED = 11
+MAX_CONNECTIONS_TRAINED = 10
 
 # Global variables to hold the loaded model and encoder
 # These will be loaded once when the application starts
@@ -25,8 +27,8 @@ def load_model_and_encoder():
     """Loads the pre-trained model and label encoder into global variables."""
     global loaded_model, loaded_encoder
     try:
-        model_path = "constellation_model4.pkl"
-        encoder_path = "label_encoder4.pkl"
+        model_path = "constellation_model_last.pkl"
+        encoder_path = "label_encoder_last.pkl"
 
         if not os.path.exists(model_path):
             print(f"Error: Model file not found at {model_path}")
@@ -47,6 +49,11 @@ def load_model_and_encoder():
         loaded_model = None
         loaded_encoder = None
         return False
+
+
+# Load model and encoder when module is imported
+if not load_model_and_encoder():
+    raise RuntimeError("Failed to load model and encoder. Aborting app startup.")
 
 
 @app.route("/predict", methods=["POST"])
@@ -166,11 +173,7 @@ def predict_constellation():
 
 
 if __name__ == "__main__":
-    # Load model and encoder when the Flask app starts
-    if load_model_and_encoder():
-        print("Starting Flask app...")
+    print("Starting Flask app...")
 
-        # Run the Flask app in development mode
-        app.run(debug=True, host="0.0.0.0", port=5000)
-    else:
-        print("Application could not start due to model/encoder loading errors.")
+    # Run the Flask app in development mode
+    app.run(debug=True, host="0.0.0.0", port=5000)

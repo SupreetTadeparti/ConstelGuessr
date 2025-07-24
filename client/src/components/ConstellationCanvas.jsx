@@ -1,7 +1,7 @@
 import { onMount, createEffect } from "solid-js";
 import "./ConstellationCanvas.css";
 
-const starRadius = 6;
+const starRadius = 8;
 const maxStars = 9; // Appropriate for ML model input size
 
 /*
@@ -66,6 +66,13 @@ function ConstellationCanvas({
       // If distance is less than or equal to starRadius + 5 (for padding) pixels, consider it a click on the star
       const dist = Math.hypot(px - x, py - y);
       if (dist <= starRadius + 5) {
+        // If shift + click, draw line instead of selecting
+        if (e.shiftKey) {
+          if (activeStar() !== -1) {
+            setConnections([...connections, [activeStar(), idx]]);
+          }
+        }
+
         setActiveStar(idx);
         found = true;
       }

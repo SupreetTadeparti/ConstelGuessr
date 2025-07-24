@@ -60,6 +60,8 @@ ConstelGeussr is a fun, interactive web app where you draw your own constellatio
 
 ## Usage
 
-1. Draw your constellation by clicking to add stars and connecting them.
-2. Click "Predict" and see which constellation the AI thinks you drew!
-3. Use the music controls for a relaxing experience.
+1. Draw your constellation by clicking to add stars
+2. Click an existing star to select it  
+3. Hold Shift and click another star to connect them with a line
+4. Click "Predict" and see which constellation the AI thinks you drew!
+5. Use the music controls for a relaxing experience.
