@@ -4,14 +4,15 @@ import pickle
 import math
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = Flask(__name__)
 
-FRONTEND_ENDPOINT = "http://localhost:5173"
-
 # Enable CORS for all routes and allow requests from the frontend
 # Adjust the origin as needed for your frontend development server
-CORS(app, resources={r"/*": {"origins": FRONTEND_ENDPOINT}})
+CORS(app, resources={r"/*": {"origins": os.environ["FRONTEND_ENDPOINT"]}})
 
 # Adjust based on your largest constellation.
 MAX_STARS_TRAINED = 11

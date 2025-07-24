@@ -2,7 +2,7 @@ import { onMount, createEffect } from "solid-js";
 import "./ConstellationCanvas.css";
 
 const starRadius = 8;
-const maxStars = 9; // Appropriate for ML model input size
+const maxStars = 11; // Appropriate for ML model input size
 
 /*
   Interface to draw constellations:

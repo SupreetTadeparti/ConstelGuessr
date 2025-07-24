@@ -43,3 +43,9 @@ input[type="range"]::-moz-range-thumb {
   background: white;
   cursor: pointer;
 }
+
+::-webkit-slider-thumb {
+  border-radius: 3px;
+  background: white;
+  cursor: pointer;
+}
