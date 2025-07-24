@@ -2,6 +2,7 @@
    <img src="client/src/assets/logo.png" alt="Logo" width="400"/>
    <h3>Inspiring the astronaut within. Draw a constellation, get an instant guess.</h3>
 </div>
+<br>
 
 ## Overview
 
