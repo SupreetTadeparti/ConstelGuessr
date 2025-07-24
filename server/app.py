@@ -28,8 +28,8 @@ def load_model_and_encoder():
     """Loads the pre-trained model and label encoder into global variables."""
     global loaded_model, loaded_encoder
     try:
-        model_path = "constellation_model_last.pkl"
-        encoder_path = "label_encoder_last.pkl"
+        model_path = "constellation_model.pkl"
+        encoder_path = "label_encoder.pkl"
 
         if not os.path.exists(model_path):
             print(f"Error: Model file not found at {model_path}")
