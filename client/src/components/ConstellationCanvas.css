@@ -1,0 +1,26 @@
+.canvas-container {
+  position: relative;
+  margin: 2rem auto;
+}
+
+.drawing-canvas {
+  position: relative;
+  background: black;
+  border-radius: 100%;
+  height: min(500px, 60vh);
+  aspect-ratio: 1;
+  box-shadow: 0 0 5px 5px rgba(255, 255, 255, 0.5);
+  z-index: 10;
+}
+
+.canvas-outline {
+  --border-width: 4px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: calc(100% - var(--border-width));
+  border: var(--border-width) dashed var(--primary-color);
+  border-radius: 50%;
+  animation: undulate 2s infinite;
+}

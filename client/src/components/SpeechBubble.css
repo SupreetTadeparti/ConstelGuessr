@@ -11,10 +11,9 @@
   position: relative;
   background: var(--primary-color);
   border-radius: 0.4em;
-  padding: 2em 3em;
-  width: max-content;
+  padding: 2em 2.5em;
   min-width: 20em;
-  max-width: 30em;
+  max-width: min(100%, 30em);
   animation: fadeIn 0.5s ease-in-out;
 }
 

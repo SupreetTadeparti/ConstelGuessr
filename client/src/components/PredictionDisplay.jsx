@@ -4,18 +4,24 @@ import "./PredictionDisplay.css";
 import SpeechBubble from "./SpeechBubble";
 import { createSignal, onCleanup } from "solid-js";
 
+const idleGreetingDisplayTime = 7000;
+const idleGreetingGapTime = 1000;
+
 function PredictionDisplay(props) {
+  const [showFallback, setShowFallback] = createSignal(true);
+  const [fallbackText, setFallbackText] = createSignal("");
+
+  // Possible greetings preceding prediction
   const greetings = [
-    "Greetings, Earthling!",
-    "Hello, human!",
-    "Salutations!",
-    "Ahoy there!",
-    "Welcome to the cosmos!",
-    "Intergalactic greetings!",
-    "Hey, Earth dweller!",
-    "Cosmic salutations!",
+    "I recognize this constellation!",
+    "Ah, a familiar pattern in the stars!",
+    "This constellation is known to me!",
+    "I see a pattern in the stars!",
+    "This constellation is intriguing!",
+    "I have seen this constellation before!",
   ];
 
+  // Possible greetings while waiting for user interaction
   const idleGreetings = [
     "I am just a humble AI, observing the stars.",
     "My thoughts drift among the constellations.",
@@ -26,7 +32,7 @@ function PredictionDisplay(props) {
   ];
 
   function getRandomGreeting() {
-    // 2% chance for special angry greeting
+    // 1% chance for special angry greeting
     if (Math.random() < 0.01) {
       return "You dare show me this constellation? Prepare for cosmic destruction!";
     }
@@ -42,16 +48,9 @@ function PredictionDisplay(props) {
     </>
   );
 
-  // setInterval to update the greeting every 5 seconds
+  /* Displays random intermittent greetings while waiting for user submission */
 
-  let fallbackContent = "";
-
-  // There should be one second between each greeting change
-  const [showFallback, setShowFallback] = createSignal(true);
-  const [fallbackText, setFallbackText] = createSignal(
-    idleGreetings[Math.floor(Math.random() * idleGreetings.length)]
-  );
-
+  // Set an interval to show fallback greetings with a delay
   let intervalId = setInterval(() => {
     setShowFallback(false);
     setTimeout(() => {
@@ -59,16 +58,16 @@ function PredictionDisplay(props) {
         idleGreetings[Math.floor(Math.random() * idleGreetings.length)]
       );
       setShowFallback(true);
-    }, 1000); // 1 second gap
-  }, 8000); // 7s show + 1s gap
+    }, idleGreetingGapTime); // 1 second gap
+  }, idleGreetingDisplayTime + idleGreetingGapTime); // 7s show + 1s gap
 
-  onCleanup(() => clearInterval(intervalId));
-
-  fallbackContent = (
-    <Show when={showFallback()}>
+  let fallbackContent = (
+    <Show when={showFallback() && fallbackText().length > 0}>
       <SpeechBubble children={fallbackText()} />
     </Show>
   );
+
+  onCleanup(() => clearInterval(intervalId));
 
   return (
     <div className="prediction-display">

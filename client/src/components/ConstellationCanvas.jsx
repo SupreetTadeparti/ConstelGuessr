@@ -1,4 +1,5 @@
 import { onMount, createSignal, createEffect } from "solid-js";
+import "./ConstellationCanvas.css";
 
 function ConstellationCanvas({
   points,
