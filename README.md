@@ -1,16 +1,15 @@
-<img src="client/src/assets/logo.png" alt="Logo" width="400"/>
-
-#### Inspiring the astronaut within. Draw a constellation, get an instant guess.
-
+<div align="center">
+   <img src="client/src/assets/logo.png" alt="Logo" width="400"/>
+   <h3>Inspiring the astronaut within. Draw a constellation, get an instant guess.</h3>
+</div>
 
 ## Overview
+
 ---
 
 ConstelGeussr is a fun, interactive web app where you draw your own constellation by placing and connecting stars. The app uses AI to guess which real-world constellation your drawing most closely matches. With a clean, intuitive UI, it’s a playful way to explore the night sky and test your constellation knowledge!
 
-
 ## Features
----
 
 - ✨ Draw constellations by placing and connecting stars
 - 🤖 AI instantly guesses the closest real constellation
@@ -19,7 +18,6 @@ ConstelGeussr is a fun, interactive web app where you draw your own constellatio
 - 🌓 Works on desktop and mobile
 
 ## Getting Started
----
 
 ### Prerequisites
 
@@ -61,9 +59,7 @@ ConstelGeussr is a fun, interactive web app where you draw your own constellatio
 
 5. Open [http://localhost:5173](http://localhost:5173) in your browser.
 
-
 ## Usage
----
 
 1. Draw your constellation by clicking to add stars and connecting them.
 2. Click "Predict" and see which constellation the AI thinks you drew!
