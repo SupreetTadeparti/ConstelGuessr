@@ -89,6 +89,7 @@ def predict_constellation():
     user_connections = data.get("connections")
 
     # Make sure stars and connections exist and are provided in the right format
+
     if not isinstance(user_stars, list) or not user_stars:
         return (
             jsonify(
@@ -96,9 +97,9 @@ def predict_constellation():
             ),
             400,
         )
-    if not isinstance(
-        user_connections, list
-    ):  # Connections can be empty if user doesn't draw them
+
+    if not isinstance(user_connections, list):
+        # Connections can be empty if user doesn't draw them
         user_connections = []
 
     # --- 1. Prepare Star Coordinates ---
@@ -116,13 +117,16 @@ def predict_constellation():
             ),
             400,
         )
+
     padded_star_coords = star_coords + [0.0] * (
         MAX_STARS_TRAINED * 2 - len(star_coords)
     )
 
     # --- 2. Prepare Connection Lengths ---
     connection_lengths = []
+
     for conn_start_id, conn_end_id in user_connections:
+        # If those stars exist, compute distances between them
         if conn_start_id in star_map and conn_end_id in star_map:
             x1, y1 = star_map[conn_start_id]
             x2, y2 = star_map[conn_end_id]
@@ -149,6 +153,7 @@ def predict_constellation():
             ),
             400,
         )
+    
     padded_connection_lengths = connection_lengths + [0.0] * (
         MAX_CONNECTIONS_TRAINED - len(connection_lengths)
     )
@@ -156,7 +161,7 @@ def predict_constellation():
     # --- 3. Combine All Features and Reshape ---
     combined_features = padded_star_coords + padded_connection_lengths
 
-    # The model expects a 2D array, even for a single sample
+    # The model expects a 2D array
     model_input = np.array(combined_features).reshape(1, -1)
 
     # --- 4. Make Prediction ---
