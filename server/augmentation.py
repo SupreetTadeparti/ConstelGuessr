@@ -71,21 +71,26 @@ def augment_star_pattern(
 
 
 def augment_and_save(
-    data, augmentations_per_constellation=500, output_dir="augmented_data_final2"
+    data, augmentations_per_constellation=500, output_dir="augmented_data"
 ):
     """
-    Generates augmented constellation data and saves it to JSON files.
+    Generates augmented constellation data and saves it to JSON files in the format 
+    constellation_name.json in the specified output directory.
 
     Args:
         data (list): The original constellation dataset.
         augmentations_per_constellation (int): Number of augmented samples to generate per constellation.
         output_dir (str): The directory to save the augmented JSON files.
     """
+
+    # Create output directory if it does not exist already
     os.makedirs(output_dir, exist_ok=True)
     print(f"Saving augmented data to: {output_dir}")
 
+    # Each constellation has a name and two lists of pairs of floats: stars and connections.
     for constellation in data:
         augmentations = []
+
         print(
             f"Generating {augmentations_per_constellation} augmentations for {constellation['name']}..."
         )
@@ -114,15 +119,17 @@ def augment_and_save(
 
         # Save all augmentations for the current constellation in one file
         filename = os.path.join(output_dir, f"{constellation['name']}.json")
+
         with open(filename, "w") as f:
             json.dump(augmentations, f, indent=2)
+
         print(f"Saved {augmentations_per_constellation} augmentations to {filename}")
 
 
-# --- Example Usage (assuming original_data is loaded from "constellations_final.json") ---
 if __name__ == "__main__":
     # Load original dataset from file
-    original_data_file = "constellations_final.json"
+    original_data_file = "constellations.json"
+
     try:
         with open(original_data_file, "r") as f:
             original_data = json.load(f)
@@ -136,6 +143,7 @@ if __name__ == "__main__":
     # Generate and save augmented data if original data is loaded
     if original_data:
         augment_and_save(original_data, augmentations_per_constellation=500)
+        
         print("\nAugmentation complete. You can now run your training script.")
     else:
         print("Skipping augmentation as original data could not be loaded.")
