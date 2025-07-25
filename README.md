@@ -53,7 +53,7 @@ ConstelGeussr is a fun, interactive web app where you draw your own constellatio
 
    ```sh
    cd client
-   npm start
+   npm run dev
    ```
 
 5. Open [http://localhost:5173](http://localhost:5173) in your browser.
