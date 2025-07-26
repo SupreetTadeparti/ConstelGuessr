@@ -11,8 +11,6 @@
 - [x] Normalize canvas data to mimic training data
 - [x] Predictor image + animation
 - [x] Small CSS tweaks ('Draw Constellation' Heading, Speech Bubble Details)
-- [ ] Responsiveness
-- [ ] Code cleanup
-- [ ] Performance testing
-- [ ] Documentation
-- [ ] Deployment
+- [x] Code cleanup
+- [x] Documentation
+- [x] Deployment
